@@ -1,13 +1,22 @@
-// the setup function runs once when you press reset or power the board
+#include<Servo.h>
+#define PINSERVODERECHO 12//pIN DEL SERVO DERECHO
+
+
+Servo servoDerecho;//Declaro el servo derecho
+
+
 void setup() {
-  // initialize digital pin LED_BUILTIN as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
+  servoDerecho.attach(PINSERVODERECHO);//Indicar que esta conectado al pin SERVODERECHO
 }
 
 // the loop function runs over and over again forever
 void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);                       // wait for a second
-  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);                       // wait for a second
+  servoDerecho.write(0);
+  delay(1000);
+  servoDerecho.write(90);
+  delay(1000);
+  servoDerecho.write(180);
+  delay(1000);
+  servoDerecho.write(90);
+  delay(1000);
  }
