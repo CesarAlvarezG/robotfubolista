@@ -12,13 +12,15 @@ void setup() {
   servoDerecho.attach(PINSERVODERECHO);//Indicar que esta conectado al pin SERVODERECHO
 }
 
-
+char orden;
 void loop() {
-  char orden;
+  
   if(Serial.available()>0)
   {
     orden=Serial.read();
-    if(orden=='w')
+    Serial.println(orden);
+  }
+  if(orden=='w')
       {
         servoDerecho.write(0);//Girar en sentido horario
         delay(1000);
@@ -31,7 +33,5 @@ void loop() {
       }else{
             servoDerecho.write(90);//Detenerse
         }
-  }
   
-  
- }
+}
