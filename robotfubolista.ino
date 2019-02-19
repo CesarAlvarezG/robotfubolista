@@ -1,22 +1,32 @@
 //REcibir orden del teclado
 
 #include<Servo.h>
-#define PINSERVODERECHO 12//pIN DEL SERVO DERECHO
+#include <SoftwareSerial.h>
+#define PINSERVODERECHO 8//pIN DEL SERVO DERECHO
+#define TXBluetooth 3
+#define RXBluetooth 2
 
 
 Servo servoDerecho;//Declaro el servo derecho
 
+SoftwareSerial BT(RXBluetooth,TXBluetooth);
 
 void setup() {
   Serial.begin(9600);
+  BT.begin(9600);
   servoDerecho.attach(PINSERVODERECHO);//Indicar que esta conectado al pin SERVODERECHO
 }
 
 int velocidad=10;
 
 char  orden;
-void loop() {
-  
+void loop() 
+{
+  if(BT.available()>0)
+  {
+    orden=BT.read();
+    BT.println(orden);
+  }
   if(Serial.available()>0)
   {
     orden=Serial.read();
